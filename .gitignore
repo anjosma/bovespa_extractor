@@ -7,4 +7,5 @@
 # python cache
 __pycache__
 
-url
+# data dir stocks
+data
