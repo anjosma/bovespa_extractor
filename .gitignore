@@ -1,2 +1,10 @@
+# virtual environment
 .venv
+
+# visual code configuration
 .vscode
+
+# python cache
+__pycache__
+
+url

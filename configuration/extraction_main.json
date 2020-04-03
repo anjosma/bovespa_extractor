@@ -1,0 +1,7 @@
+{
+    "USE_GENERAL_CONFIG": true,
+    "DATETIME_START": "",
+    "DATETIME_END": "",
+    "INTERVAL": "",
+    "EXTRACT_STOCKS": ["CVCB3", "PETR3", "AZUL3"]
+}
