@@ -1,7 +1,11 @@
 {
     "USE_GENERAL_CONFIG": true,
-    "DATETIME_START": "",
-    "DATETIME_END": "",
+    "DATE_START": "2015-01-01",
+    "DATE_END": "2016",
     "INTERVAL": "",
-    "EXTRACT_STOCKS": ["CVCB3", "PETR3", "AZUL3"]
+    "EXTRACT_STOCKS": [
+        "CVCB3"
+    ]
+        //"PETR3", "AZUL3", "BOVA11", "BBAS3", "EQTL3", "GGBR3", "JSLG3", "KLBN3",
+        //"LCAM3", "LREN3", "MRFG3", "SBSP3", "SULA11"]
 }
