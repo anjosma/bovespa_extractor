@@ -7,12 +7,12 @@ CONFIG_MAIN_FILE = "./configuration/extraction_main.json"
 CONFIG_STOCK_FILE = "./configuration/extraction_stocks.json"
 URL_FILE = "./configuration/url"
 ENCODING = "UTF-8"
-DATA_DIR = "./data/"
-
-create_dir(DATA_DIR)
 
 configs_main = load_file_json(CONFIG_MAIN_FILE)
 configs_stock = load_file_json(CONFIG_STOCK_FILE)
+
+data_dir = configs_main.get("DATA_DIR")
+create_dir(data_dir)
 
 date_start = configs_main.get("DATE_START")
 date_end = configs_main.get("DATE_END")
@@ -23,16 +23,16 @@ def load_stocks_to_extract(file_name: str) -> list:
 def get_stock_data(stock: str) -> requests.models.Response:
     return requests.get(url.format(stock=stock, date_start=date_start_ts, date_end=date_end_ts))
 
-def write_into_csv(data: requests.models.Response, file_name: str) -> None:
-    with open(DATA_DIR+"{name}.csv".format(name=file_name), "w") as f:
+def write_into_csv(response: requests.models.Response, file_name: str) -> None:
+    with open(data_dir+"{name}.csv".format(name=file_name), "w") as f:
         writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
-        writer.writerows(csv.reader(data.content.decode(ENCODING).replace(
-            "null", "").splitlines(), delimiter=','))
+        writer.writerows(csv.reader(response.content.decode(ENCODING).replace(
+            "null", "").replace(" ", "_").lower().splitlines(), delimiter=','))
 
-def run_extraction_stock(stocks):
+def run_extraction_stock(stocks: str) -> None:
     for stock in stocks:
-        data = get_stock_data(stock)
-        write_into_csv(data, stock)
+        response = get_stock_data(stock)
+        write_into_csv(response, stock)
 
 if __name__ == "__main__":
     stocks = load_stocks_to_extract(CONFIG_MAIN_FILE)
