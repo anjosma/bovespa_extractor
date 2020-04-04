@@ -25,8 +25,9 @@ def get_stock_data(stock: str) -> requests.models.Response:
 
 def write_into_csv(data: requests.models.Response, file_name: str) -> None:
     with open(DATA_DIR+"{name}.csv".format(name=file_name), "w") as f:
-        writer = csv.writer(f)
-        writer.writerows(csv.reader(data.content.decode(ENCODING).splitlines(), delimiter=','))
+        writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+        writer.writerows(csv.reader(data.content.decode(ENCODING).replace(
+            "null", "").splitlines(), delimiter=','))
 
 def run_extraction_stock(stocks):
     for stock in stocks:
