@@ -26,3 +26,6 @@ class Postgres:
 
     def commit(self):
         self.__conn.commit()
+
+    def close(self):
+        self.__conn.close()
