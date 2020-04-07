@@ -1,11 +1,12 @@
 {
     "USE_GENERAL_CONFIG": true,
     "DATE_START": "1960-01-01",
-    "DATE_END": "2020-04-06",
+    "DATE_END": "2020-04-07",
     "INTERVAL": "",
     "DATA_DIR": "./data/",
     "EXTRACT_STOCKS": [
         "CVCB3","PETR3", "AZUL4", "BOVA11", "BBAS3", "EQTL3", "GGBR3",
-        "JSLG3","KLBN3", "LCAM3", "LREN3", "MRFG3", "SBSP3", "SULA11"
+        "JSLG3","KLBN3", "LCAM3", "LREN3", "MRFG3", "SBSP3", "SULA11",
+        "MGLU3", "BTOW3"
     ]
 }
