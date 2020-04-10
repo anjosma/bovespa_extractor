@@ -35,7 +35,7 @@ def run_extraction_stock(stocks: str) -> None:
         write_into_csv(response, stock)
 
 if __name__ == "__main__":
-    stocks = load_stocks_to_extract(CONFIG_MAIN_FILE)
+    stocks = list(dict.fromkeys(load_stocks_to_extract(CONFIG_MAIN_FILE)))
     url = load_file_url(URL_FILE)
 
     date_start_ts = str_date_to_timestamp(date_start)
