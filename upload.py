@@ -7,19 +7,10 @@ import csv
 configs_db = load_file_json("./configuration/database.json")
 configs_main = load_file_json("./configuration/extraction_main.json")
 
-data_dir = configs_main.get("DATA_DIR")
+data_stock_dir = configs_main.get("DATA_STOCK_DIR")
+data_index_dir = configs_main.get("DATA_INDEX_DIR")
 
-if __name__ == "__main__":
-
-
-    psql = Postgres(
-        host=configs_db.get("HOST"),
-        user=configs_db.get("USER"),
-        password=configs_db.get("PASSWORD"),
-        port=configs_db.get("PORT"),
-        database=configs_db.get("DATABASE")
-    )
-
+def upload_files_data_to_db(data_dir, schema):
     cursor = psql.get_cursor
 
     files_to_upload = [file for file in glob.glob("{dir}*.csv".format(dir=data_dir))]
@@ -29,7 +20,7 @@ if __name__ == "__main__":
         
         cursor.execute(
             """
-                CREATE TABLE stocks.{table_name} (
+                CREATE TABLE {schema}.{table_name} (
                     date date PRIMARY KEY,
                     open float,
                     high float,
@@ -38,7 +29,7 @@ if __name__ == "__main__":
                     adj_close float,
                     volume float
                 )
-            """.format(table_name=table_name)
+            """.format(schema=schema, table_name=table_name)
         )
         
         with open(file, "r") as f:
@@ -48,10 +39,24 @@ if __name__ == "__main__":
                 row = [None if value == "" else value for value in row]
                 cursor.execute(
                 """
-                INSERT INTO stocks.{table_name} (date, open, high, low, close, adj_close, volume) 
+                INSERT INTO {schema}.{table_name} (date, open, high, low, close, adj_close, volume) 
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
-                """.format(table_name=table_name),
+                """.format(schema=schema, table_name=table_name),
                 row
                 )
         psql.commit()
+
+if __name__ == "__main__":
+
+    psql = Postgres(
+        host=configs_db.get("HOST"),
+        user=configs_db.get("USER"),
+        password=configs_db.get("PASSWORD"),
+        port=configs_db.get("PORT"),
+        database=configs_db.get("DATABASE")
+    )
+
+    upload_files_data_to_db(data_stock_dir, "stocks")
+    upload_files_data_to_db(data_index_dir, "indexes")
+
     psql.close()
