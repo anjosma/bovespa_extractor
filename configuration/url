@@ -1,1 +1,1 @@
-https://query1.finance.yahoo.com/v7/finance/download/{stock}.SA?period1={date_start}&period2={date_end}&interval=1d&events=history
+https://query1.finance.yahoo.com/v7/finance/download/{stock}?period1={date_start}&period2={date_end}&interval=1d&events=history
