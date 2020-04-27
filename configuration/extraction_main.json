@@ -1,6 +1,6 @@
 {
     "DATE_START": "1960-01-01",
-    "DATE_END": "2020-04-16",
+    "DATE_END": "2020-04-26",
     "INTERVAL": "",
     "DATA_STOCK_DIR": "./data/stock/",
     "EXTRACT_STOCKS": [
