@@ -3,5 +3,5 @@
     "USER": "postgres",
     "PASSWORD": "password",
     "PORT": "5432",
-    "DATABASE": "bovespa"
+    "DATABASE": "postgres"
 }

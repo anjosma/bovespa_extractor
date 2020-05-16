@@ -1,6 +1,7 @@
 from bovespa_extractor.common.utils import load_file_json, load_file_url, str_date_to_timestamp, create_dir
 
 import requests
+from datetime import datetime
 import csv
 
 CONFIG_MAIN_FILE = "./configuration/extraction_main.json"
@@ -8,6 +9,7 @@ URL_FILE = "./configuration/url"
 ENCODING = "UTF-8"
 STOCK_SUFFIX = ".SA"
 INDEX_PREFIX = "%5E"
+DATE_FORMAT = "%Y-%m-%d"
 
 configs_main = load_file_json(CONFIG_MAIN_FILE)
 
@@ -17,6 +19,7 @@ data_index_dir = configs_main.get("DATA_INDEX_DIR")
 
 date_start = configs_main.get("DATE_START")
 date_end = configs_main.get("DATE_END")
+if date_end == 'last': date_end = datetime.date(datetime.now()).strftime(DATE_FORMAT)
 
 def load_stocks_to_extract(file_name: str) -> list:
     return [s + STOCK_SUFFIX for s in configs_main.get("EXTRACT_STOCKS")]
@@ -44,8 +47,8 @@ if __name__ == "__main__":
 
     url = load_file_url(URL_FILE)
 
-    date_start_ts = str_date_to_timestamp(date_start)
-    date_end_ts = str_date_to_timestamp(date_end)
+    date_start_ts = str_date_to_timestamp(date_start, DATE_FORMAT)
+    date_end_ts = str_date_to_timestamp(date_end, DATE_FORMAT)
 
     run_extraction(stocks, data_stock_dir)
     run_extraction(indexes, data_index_dir)
