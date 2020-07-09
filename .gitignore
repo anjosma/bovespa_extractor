@@ -9,3 +9,6 @@ __pycache__
 
 # data dir stocks
 data
+
+# tests
+*.csv
