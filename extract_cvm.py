@@ -15,6 +15,7 @@ if __name__ == "__main__":
 
     for i, data in enumerate(files):
         with zf.open(data) as f:
-            with open("{}.csv".format(i), "w") as f1:
+            print(data)
+            with open("{}".format(i), "w") as f1:
                 writer = csv.writer(f1, quoting=csv.QUOTE_MINIMAL)
                 writer.writerows(csv.reader(f.read().decode("ISO-8859-1").lower().splitlines(), delimiter=';'))
