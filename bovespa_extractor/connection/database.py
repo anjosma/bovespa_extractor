@@ -29,3 +29,6 @@ class Postgres:
 
     def close(self):
         self.__conn.close()
+
+    def rollback(self):
+        sef.__conn.rollback()
