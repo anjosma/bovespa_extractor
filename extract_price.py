@@ -4,7 +4,7 @@ import requests
 from datetime import datetime
 import csv
 
-CONFIG_MAIN_FILE = "./configuration/extraction_main.json"
+CONFIG_MAIN_FILE = "./configuration/extraction_price.json"
 URL_FILE = "./configuration/url"
 ENCODING = "UTF-8"
 STOCK_SUFFIX = ".SA"
