@@ -1,21 +1,35 @@
+from bovespa_extractor.common.utils import create_dir, load_file_json
 import requests
 import zipfile
 import io
 import csv
+import os
 
 def get_company_data(url: str) -> requests.models.Response:
     return requests.get(url)
 
+ENCODING = "ISO-8859-1"
+CONFIG_CVM_PATH = "./configuration/extraction_cvm.json"
+
+configs_cvm = load_file_json(CONFIG_CVM_PATH)
+
 if __name__ == "__main__":
 
-    file_z = get_company_data("http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DRE/DADOS/dre_cia_aberta_2019.zip")
-    
-    zf = zipfile.ZipFile(io.BytesIO(file_z.content))
-    files = [s for s in zf.namelist()]
+    for sortof in configs_cvm.keys():
+        url = configs_cvm[sortof].get("URL")
 
-    for data in files:
-        with zf.open(data) as f:
-            with open("notebook/{}".format(data), "w") as f1:
-                writer = csv.writer(f1, quoting=csv.QUOTE_MINIMAL)
-                writer.writerows(csv.reader(f.read().decode("ISO-8859-1").lower().splitlines(), delimiter=';'))
-        
+        for year in range(2010, 2021):
+
+            file_z = get_company_data(url.format(year=year))
+            
+            zf = zipfile.ZipFile(io.BytesIO(file_z.content))
+            files = [s for s in zf.namelist()]
+
+            for data in files:
+                file_path = os.path.join("data", "cvm", sortof.lower(), data)
+                create_dir(file_path)
+                with zf.open(data):
+                    with open(file_path, "w") as f:
+                        writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+                        writer.writerows(csv.reader(f.read().decode(ENCODING).lower().splitlines(), delimiter=';'))
+            

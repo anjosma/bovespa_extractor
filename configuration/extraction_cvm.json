@@ -1,0 +1,11 @@
+{
+    "DRE": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DRE/DADOS/dre_cia_aberta_{year}.zip"
+    },
+    "BPP": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/BPP/DADOS/bpp_cia_aberta_{year}.zip"
+    },
+    "BPA": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/BPA/DADOS/bpa_cia_aberta_{year}.zip"
+    }
+}
