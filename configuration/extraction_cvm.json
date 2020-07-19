@@ -9,6 +9,27 @@
         "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/BPA/DADOS/bpa_cia_aberta_{year}.zip"
     },
     "CAD": {
-        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/META/meta_cad_cia_aberta.txt"
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.csv"
+    },
+    "ITR": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/ITR/DADOS/itr_cia_aberta_{year}.zip"
+    },
+    "FRE": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/fre_cia_aberta_{year}.zip"
+    },
+    "FCA": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FCA/DADOS/fca_cia_aberta_{year}.zip"
+    },
+    "DVA": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DVA/DADOS/dva_cia_aberta_{year}.zip"
+    },
+    "DMPL": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DMPL/DADOS/dmpl_cia_aberta_{year}.zip"
+    },
+    "DFC_MI": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DFC_MI/DADOS/dfc_mi_cia_aberta_{year}.zip"
+    },
+    "DFC_MD": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DFC_MD/DADOS/dfc_md_cia_aberta_{year}.zip"
     }
 }

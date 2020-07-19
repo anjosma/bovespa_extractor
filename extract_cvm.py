@@ -14,7 +14,13 @@ CONFIG_CVM_PATH = "./configuration/extraction_cvm.json"
 configs_cvm = load_file_json(CONFIG_CVM_PATH)
 
 def download_txt_file():
-    pass
+    file_txt = get_company_data(url).content
+    file_path = os.path.join("data", "cvm", sortof.lower(), url.split("/")[-1])
+    create_dir(file_path)
+    with open(file_path, "w") as f:
+        writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+        writer.writerows(csv.reader(file_txt.decode(ENCODING).splitlines(), delimiter=";"))
+
 def download_from_zip():
     for year in range(2010, 2021):
 
@@ -29,17 +35,14 @@ def download_from_zip():
             with zf.open(data) as f1:
                 with open(file_path, "w") as f:
                     writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
-                    writer.writerows(csv.reader(f1.read().decode(ENCODING).lower().splitlines(), delimiter=';'))
+                    writer.writerows(csv.reader(f1.read().decode(ENCODING).splitlines(), delimiter=';'))
 
 if __name__ == "__main__":
 
     for sortof in configs_cvm.keys():
         url = configs_cvm[sortof].get("URL")
 
-        if ".txt" in url:
-            download_txt()
-        #elif ".zip" in url:
-            #download_from_zip()
-
-        
-            
+        if ".csv" in url:
+            download_txt_file()
+        elif ".zip" in url:
+            download_from_zip()
