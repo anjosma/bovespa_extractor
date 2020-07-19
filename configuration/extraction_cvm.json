@@ -7,5 +7,8 @@
     },
     "BPA": {
         "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/BPA/DADOS/bpa_cia_aberta_{year}.zip"
+    },
+    "CAD": {
+        "URL": "http://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/META/meta_cad_cia_aberta.txt"
     }
 }
