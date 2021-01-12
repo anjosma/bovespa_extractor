@@ -33,8 +33,14 @@ def get_stock_data(stock: str) -> requests.models.Response:
 def write_into_csv(response: requests.models.Response, file_name: str, storage_dir: str) -> None:
     with open(storage_dir+"{name}.csv".format(name=file_name), "w") as f:
         writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
-        writer.writerows(csv.reader(response.content.decode(ENCODING).replace(
-            "null", "").replace(" ", "_").lower().splitlines(), delimiter=','))
+        v = csv.reader(response.content.decode(ENCODING).replace(
+            "null", "").replace(" ", "_").lower().splitlines(), delimiter=',')
+        v1 = v
+        
+        size = v.__len__()
+        print(size)
+        if size > 1:
+            writer.writerows(v)
 
 def run_extraction(names: list, storage_dir: str) -> None:
     for name in names:

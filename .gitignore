@@ -12,3 +12,4 @@ data
 
 # tests
 notebook
+.ipynb_checkpoints

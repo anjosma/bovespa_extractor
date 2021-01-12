@@ -26,16 +26,19 @@ def download_from_zip():
 
         file_z = get_company_data(url.format(year=year))
         
-        zf = zipfile.ZipFile(io.BytesIO(file_z.content))
-        files = [s for s in zf.namelist()]
+        try:
+            zf = zipfile.ZipFile(io.BytesIO(file_z.content))
+            files = [s for s in zf.namelist()]
 
-        for data in files:
-            file_path = os.path.join("data", "cvm", sortof.lower(), data)
-            create_dir(file_path)
-            with zf.open(data) as f1:
-                with open(file_path, "w") as f:
-                    writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
-                    writer.writerows(csv.reader(f1.read().decode(ENCODING).splitlines(), delimiter=';'))
+            for data in files:
+                file_path = os.path.join("data", "cvm", sortof.lower(), data)
+                create_dir(file_path)
+                with zf.open(data) as f1:
+                    with open(file_path, "w") as f:
+                        writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+                        writer.writerows(csv.reader(f1.read().decode(ENCODING).splitlines(), delimiter=';'))
+        except:
+            print("erro", url)    
 
 if __name__ == "__main__":
 
