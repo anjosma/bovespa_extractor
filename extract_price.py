@@ -1,5 +1,6 @@
 from bovespa_extractor.common.utils import load_file_json, load_file_url, str_date_to_timestamp, create_dir
 
+import time
 import requests
 from datetime import datetime
 import csv
@@ -35,17 +36,14 @@ def write_into_csv(response: requests.models.Response, file_name: str, storage_d
         writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
         v = csv.reader(response.content.decode(ENCODING).replace(
             "null", "").replace(" ", "_").lower().splitlines(), delimiter=',')
-        v1 = v
-        
-        size = v.__len__()
-        print(size)
-        if size > 1:
-            writer.writerows(v)
+        writer.writerows(v)
 
 def run_extraction(names: list, storage_dir: str) -> None:
     for name in names:
+        print(name)
         response = get_stock_data(name)
         write_into_csv(response, name.replace(STOCK_SUFFIX, "").replace(INDEX_PREFIX, ""), storage_dir)
+        time.sleep(2.5)
 
 if __name__ == "__main__":
     stocks = list(dict.fromkeys(load_stocks_to_extract(CONFIG_MAIN_FILE)))

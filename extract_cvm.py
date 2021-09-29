@@ -22,7 +22,7 @@ def download_txt_file():
         writer.writerows(csv.reader(file_txt.decode(ENCODING).splitlines(), delimiter=";"))
 
 def download_from_zip():
-    for year in range(2010, 2021):
+    for year in range(2000, 2010):
 
         file_z = get_company_data(url.format(year=year))
         

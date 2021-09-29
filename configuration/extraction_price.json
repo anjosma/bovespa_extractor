@@ -1,15 +1,8 @@
 {
     "DATE_START": "1960-01-01",
-    "DATE_END": "last",
+    "DATE_END": "2021-03-31",
     "INTERVAL": "",
     "DATA_STOCK_DIR": "./data/stock/",
-    "EXTRACT_STOCKS": [
-        "BBAS3", "BSLI3", "BIDI3", "BPAR3", "BNBR3", "BGIP3", "PRBC3", "CRIV3", "BMEB3", "BEES3", "ABCB3", "BPAC3", "MERC3", "BMIN3", "BPAN3", "BBDC3", "BRIV3", "ITUB3", "IDVL3", "BMGB3", "PINE3", "DAYC3", "SANB3", "FNCN3", "BRSR3",
-        "BBAS4", "BSLI4", "BIDI4", "BPAR4", "BNBR4", "BGIP4", "PRBC4", "CRIV4", "BMEB4", "BEES4", "ABCB4", "BPAC4", "MERC4", "BMIN4", "BPAN4", "BBDC4", "BRIV4", "ITUB4", "IDVL4", "BMGB4", "PINE4", "DAYC4", "SANB4", "FNCN4", "BRSR4",
-        "BBAS11", "BSLI11", "BIDI11", "BPAR11", "BNBR11", "BGIP11", "PRBC11", "CRIV11", "BMEB11", "BEES11", "ABCB11", "BPAC11", "MERC11", "BMIN11", "BPAN11", "BBDC11", "BRIV11", "ITUB11", "IDVL11", "BMGB11", "PINE11", "DAYC11", "SANB11", "FNCN11", "BRSR11"
-    ],
-    "DATA_INDEX_DIR": "./data/index/",
-    "EXTRACT_INDEX": [
-        "IXIC", "N225", "HSI", "GDAXI", "DJI", "NYA", "GSPC", "FCHI"
-    ]
+    "EXTRACT_STOCKS": ["VVAR3", "ITUB4", "CVCB3"]
 }
+
